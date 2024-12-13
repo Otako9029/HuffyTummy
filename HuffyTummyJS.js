@@ -39,28 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Chicken Tato Bomb",
             description: "A delicious chicken dish with a crispy potato crust.",
             price: 130,
-            image: "path/to/chicken_tato_bomb_image.jpg" // Add the image path
         },
         {
             name: "Trissedia Fiesta",
             description: "A festive dish with layers of cheese and savory fillings.",
             price: 150,
-            image: "path/to/trissedia_fiesta_image.jpg" // Add the image path
         }
     ];
 
     const drinkData = [
         {
-            name: "Lemonade",
-            description: "A refreshing lemonade with a hint of mint.",
+            name: "Ice Paradise",
+            description: "Special flavored sparkling cold drink",
             price: 50,
-            image: "path/to/lemonade_image.jpg" // Add the image path
         },
         {
-            name: "Iced Tea",
-            description: "A chilled iced tea with a splash of lemon.",
+            name: "Frosty Oasis",
+            description: "Shaved ice with special flavors",
             price: 40,
-            image: "path/to/iced_tea_image.jpg" // Add the image path
         }
     ];
 
@@ -68,51 +64,50 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlideIndex = 0;
 
     carousel.addEventListener('slide.bs.carousel', function (event) {
-        currentSlideIndex = event.to; // Get the index of the next slide
-        const meal = mealData[currentSlideIndex]; // Get the corresponding meal data
+        currentSlideIndex = event.to;
+        const meal = mealData[currentSlideIndex]; 
 
-        // Update the meal card
         document.getElementById('mealName').textContent = meal.name;
         document.getElementById('mealDescription').textContent = meal.description;
-        document.getElementById('mealPrice').textContent = `$${meal.price.toFixed(2)}`; // Update price
-        document.getElementById('mealImage').src = meal.image; // Update image
+        document.getElementById('mealPrice').textContent = `$${meal.price.toFixed(2)}`;
+        document.getElementById('mealImage').src = meal.image; 
     });
 
-    // Drink carousel functionality
+ 
     const drinkCarousel = document.getElementById('carouselExampleDrinkIndicators');
     let currentDrinkSlideIndex = 0;
 
     drinkCarousel.addEventListener('slide.bs.carousel', function (event) {
-        currentDrinkSlideIndex = event.to; // Get the index of the next slide
-        const drink = drinkData[currentDrinkSlideIndex]; // Get the corresponding drink data
+        currentDrinkSlideIndex = event.to; 
+        const drink = drinkData[currentDrinkSlideIndex]; 
 
-        // Update the drink card
+
         document.getElementById('drinkName').textContent = drink.name;
         document.getElementById('drinkDescription').textContent = drink.description;
-        document.getElementById('drinkPrice').textContent = `$${drink.price.toFixed(2)}`; // Update price
-        document.getElementById('drinkImage').src = drink.image; // Update image
+        document.getElementById('drinkPrice').textContent = `$${drink.price.toFixed(2)}`; 
+        document.getElementById('drinkImage').src = drink.image;
     });
 
     let cart = [];
     let total = 0;
 
-    // Function to add a meal or drink to the cart
+
     function addToCart(item, quantity) {
         const existingItem = cart.find(cartItem => cartItem.name === item.name);
         if (existingItem) {
-            existingItem.quantity += quantity; // Increase quantity if already in cart
+            existingItem.quantity += quantity; 
         } else {
-            item.quantity = quantity; // Set initial quantity
-            cart.push({ ...item }); // Add new item to cart
+            item.quantity = quantity; 
+            cart.push({ ...item }); 
         }
-        total += item.price * quantity; // Update total price
+        total += item.price * quantity; 
         updateCartDisplay();
     }
 
-    // Function to update the cart display
+
     function updateCartDisplay() {
         const cartItemsContainer = document.getElementById('cartItems');
-        cartItemsContainer.innerHTML = ''; // Clear previous items
+        cartItemsContainer.innerHTML = '';
 
         cart.forEach((meal, index) => {
             const cartItem = document.createElement('div');
@@ -128,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function updateCartDisplay() {
         const cartItemsContainer = document.getElementById('cartItems');
-        cartItemsContainer.innerHTML = ''; // Clear previous items
+        cartItemsContainer.innerHTML = '';
 
         cart.forEach((drink, index) => {
             const cartItem = document.createElement('div');
@@ -143,33 +138,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cartTotal').textContent = total.toFixed(2);
     }
 
-    // Function to remove a meal from the cart
     window.removeFromCart = function(index) {
-        total -= cart[index].price * cart[index].quantity; // Subtract total price of the meal
-        cart.splice(index, 1); // Remove meal from cart
+        total -= cart[index].price * cart[index].quantity; 
+        cart.splice(index, 1);
         updateCartDisplay();
     };
 
-    // Add event listener for the Add to Cart button
     document.getElementById('addToCartMealButton').addEventListener('click', () => {
-        const quantity = parseInt(mealCountDisplay.textContent); // Get the current count
+        const quantity = parseInt(mealCountDisplay.textContent);
         if (quantity > 0) {
-            const meal = mealData[currentSlideIndex]; // Get the currently displayed meal
-            addToCart(meal, quantity); // Add the selected meal to the cart
-            mealCount = 0; // Reset count after adding to cart
+            const meal = mealData[currentSlideIndex]; 
+            addToCart(meal, quantity); 
+            mealCount = 0; 
             mealCountDisplay.textContent = mealCount;
-            unt; // Update display
+            unt; 
         } else {
             alert("Please select a quantity before adding to cart.");
         }
     });
     document.getElementById('addToCartDrinkButton').addEventListener('click', () => {
-        const quantity = parseInt(drinkCountDisplay.textContent); // Get the current count
+        const quantity = parseInt(drinkCountDisplay.textContent); 
         if (quantity > 0) {
-            const drink = drinkData[currentSlideIndex]; // Get the currently displayed meal
-            addToCart(drink, quantity); // Add the selected meal to the cart
-            drinkCount = 0; // Reset count after adding to cart
-            drinkCountDisplay.textContent = drinkcount; // Update display
+            const drink = drinkData[currentSlideIndex]; 
+            addToCart(drink, quantity); 
+            drinkCount = 0;
+            drinkCountDisplay.textContent = drinkcount; 
         } else {
             alert("Please select a quantity before adding to cart.");
         }
