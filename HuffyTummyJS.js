@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('mealName').textContent = meal.name;
         document.getElementById('mealDescription').textContent = meal.description;
-        document.getElementById('mealPrice').textContent = `$${meal.price.toFixed(2)}`;
+        document.getElementById('mealPrice').textContent = `₱${meal.price.toFixed(2)}`;
         document.getElementById('mealImage').src = meal.image; 
     });
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('drinkName').textContent = drink.name;
         document.getElementById('drinkDescription').textContent = drink.description;
-        document.getElementById('drinkPrice').textContent = `$${drink.price.toFixed(2)}`; 
+        document.getElementById('drinkPrice').textContent = `₱${drink.price.toFixed(2)}`; 
         document.getElementById('drinkImage').src = drink.image;
     });
 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
-                <span>${meal.name} - $${meal.price.toFixed(2)} x ${meal.quantity}</span>
+                <span>${meal.name} - ₱${meal.price.toFixed(2)} x ${meal.quantity}</span>
                 <button onclick="removeFromCart(${index})">Remove</button>
             `;
             cartItemsContainer.appendChild(cartItem);
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
-                <span>${drink.name} - $${drink.price.toFixed(2)} x ${drink.quantity}</span>
+                <span>${drink.name} - ₱${drink.price.toFixed(2)} x ${drink.quantity}</span>
                 <button onclick="removeFromCart(${index})">Remove</button>
             `;
             cartItemsContainer.appendChild(cartItem);
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const drink = drinkData[currentSlideIndex]; 
             addToCart(drink, quantity); 
             drinkCount = 0;
-            drinkCountDisplay.textContent = drinkcount; 
+            drinkCountDisplay.textContent = drinkCount; 
         } else {
             alert("Please select a quantity before adding to cart.");
         }
